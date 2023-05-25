@@ -1,12 +1,20 @@
-Describe: pigLatin()
+Describe: removePunctuation()
 
 Test: "It will remove any punctuation from user entered string."
-Code: pigLatin("away!");
+Code:
+const punctuationString = ("away!!!");
+removePunctuation(punctuationString);
 Expected Output: "away";
 
-Test: "It will not consider 'y' as a vowel."
-Code: pigLatin("yes");
-Expected Output: "yes";
+Describe: startsWithVowel()
+
+Test: "It returns 'true' if the word starts with the vowels 'a', 'e', 'i', 'o', and 'u'."
+Code: startsWithVowel("apple");
+Expected Output: "true";
+Code: startsWithVowel("yes");
+Expected Output: "false";
+
+Describe: pigLatin()
 
 Test: "It will add 'way' to the end of words that begin with a vowel."
 Code: pigLatin("away");
