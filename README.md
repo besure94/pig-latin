@@ -1,3 +1,16 @@
+pigLatin plan:
+1. Take in user string.
+2. Remove punctuation from string.
+3. Split string into array of words.
+4. Loop through each word.
+5. Check whether each word starts with vowel or not. If word starts with vowel, add 'way' to the end of word.
+**6. Check whether each words starts with one or more consecutive consonants. Move all of the first consecutive consonants to the end and add 'ay'.**
+	* Fix logic on lines 19-23.
+7. Check whether the first consonants include 'qu', move the 'q' and 'u' to the end and add 'ay'.
+8. Return pig latin phrase.
+
+
+
 Describe: removePunctuation()
 
 Test: "It will remove any punctuation from user entered string."
