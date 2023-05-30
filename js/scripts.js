@@ -1,57 +1,48 @@
-const testString = "quick green apple aardvark away!!!";
-// const newString = testString.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+const testString = "word squall quick green apple aardvark away!!!";
 
 function removePunctuation(punctuationString) {
-	// console.log(punctuationString);
 	return punctuationString.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
 }
 
-function pigLatin(userInput) {
+function convertToPigLatin(userInput) {
 	const userInputWithoutPunctuation = removePunctuation(userInput);
-	if (userInputWithoutPunctuation.includes(" ")) {
-		// User input has multiple words //
-		const userInputArray = userInputWithoutPunctuation.split(" ");
-		const pigLatinArray = [];
-		userInputArray.forEach(function(word) {
-			if (startsWithVowel(word)) {
-				pigLatinArray.push(word + "way");
-			} else {
-				if (checkForConsecutiveConsonants || word.slice(0, 2) === "qu") {
-					let consonantPairEnding = word.slice(0, 2) + "ay";
-					let restOfWord = word.slice(2);
-					pigLatinArray.push(restOfWord + consonantPairEnding);
-				}
-			}
-		});
-		return pigLatinArray.join(" ");
-
-	} else {
-		// User input is only one word //
-		if (startsWithVowel(userInputWithoutPunctuation)) {
-			// Does start with a vowel
-			return userInputWithoutPunctuation + "way";
+	const userInputArray = userInputWithoutPunctuation.split(" ");
+	const pigLatinArray = [];
+	userInputArray.forEach(function(word) {
+		// If words begins with vowel, add 'way' to the end.
+		if (startsWithVowel(word)) {
+			pigLatinArray.push(word + "way");
 		} else {
-			return userInputWithoutPunctuation;
+			// If word begins with one or more consonants, move all of the first consecutive consonants to the end and add 'ay'.
+			const consonantIndex = indexOfConsecutiveConsonants(word);
+			let restOfWord = word.slice(consonantIndex);
+			let consonantPairEnding = word.slice(0, consonantIndex) + "ay";
+			pigLatinArray.push(restOfWord + consonantPairEnding);
 		}
-	}
-	return userInputWithoutPunctuation;
+	});
+	// Return all words in a sentence joined together from an array to a string.
+	return pigLatinArray.join(" ");
 }
-// console.log("New string: ", removePunctuation(testString));
-console.log("Pig Latin: ", pigLatin(testString));
-
-const vowelString = "apple";
-const nonVowelString = "yes";
 
 function startsWithVowel(word) {
 	const vowelArray = ['a', 'e', 'i', 'o', 'u'];
 	return vowelArray.includes(word[0]);
 }
 
-function checkForConsecutiveConsonants(word) {
+// This function provides the index so it can slice off the consonants of a word.
+function indexOfConsecutiveConsonants(word) {
 	const vowelArray = ['a', 'e', 'i', 'o', 'u'];
-	if (!vowelArray.includes(word[0]) && !vowelArray.includes(word[1])) {
-		return true;
-	} else {
-		return false;
+	for (index = 0; index < word.length; index ++) {
+		let currentLetter = word[index];
+		if (vowelArray.includes(currentLetter)) {
+			if (currentLetter === "u" && word[index -1] === "q") {
+				// return consonant index including 'u' when it is 'qu'.
+				return index +1;
+			} else {
+				return index;
+			}
+		}
 	}
 }
+
+console.log("Convert to pig latin: ", convertToPigLatin(testString));
