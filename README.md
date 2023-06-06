@@ -1,3 +1,37 @@
+## Pig Latin
+
+By Brian Scherner
+
+#### An application that takes words and applies the rules of Pig Latin to them.
+
+## Technologies Used
+
+* HTML
+* JavaScript
+* Markdown
+
+## Description
+
+This application allows users to input words, which are then converted into Pig Latin phrases. Words beginning with a vowel will have "way" added to the end. Words beginning with one or more consonants will have the consonants moved to the end, followed by "ay". Words beginning with "q" and "u" will be moved to the end of the word, followed by "ay".
+
+## Setup/Installation Requirements
+
+* Clone this repository to your desktop.
+* Navigate to the js/scripts.js file in the directory.
+* Open js/scripts.js file in your browser.
+
+## Known Bugs
+
+The application currently does not have a user interface. I plan to add a user interface later.
+
+## License
+
+MIT
+
+Copyright (c) 2023 Brian Scherner
+
+### Tests
+
 pigLatin plan:
 1. Take in user string.
 2. Remove punctuation from string.
